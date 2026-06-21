@@ -1,0 +1,107 @@
+﻿<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#101411" />
+    <title>Guia GPS Agricola</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="stylesheet" href="styles.css?v=17" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <main class="navigator">
+        <section class="guidance-panel" aria-label="Pantalla de guia">
+          <div class="canvas-wrap">
+            <canvas id="fieldCanvas" width="1200" height="850"></canvas>
+
+            <div class="phone-status">
+              <span>GPS Agricola</span>
+              <strong id="gpsStatus">Sin GPS</strong>
+            </div>
+
+            <button class="round-btn settings-btn" type="button" aria-label="Configuracion">⚙</button>
+            <button class="round-btn frame-btn" id="recenterBtn" type="button" aria-label="Centrar">⌖</button>
+            <button class="round-btn locate-btn" type="button" aria-label="Ubicacion">➤</button>
+
+            <div class="instruction-card" id="steerHint">Mueva a la ubicacion deseada y luego marque el punto A</div>
+            <div class="speed-bubble" id="speedValue">0.0 km/h</div>
+
+            <div class="field-stats">
+              <span>Ruta:</span>
+              <strong id="distanceValue">0 m</strong>
+              <span>Area:</span>
+              <strong id="areaValue">0.00 ha</strong>
+              <span>Precision:</span>
+              <strong id="accuracyValue">--</strong>
+            </div>
+
+            <div class="floating-metrics">
+              <div>
+                <span>Desvio</span>
+                <strong id="offsetValue">--</strong>
+              </div>
+              <div>
+                <span>Pasada</span>
+                <strong id="swathValue">--</strong>
+              </div>
+            </div>
+
+            <div class="lightbar" id="lightbar" aria-label="Barra de direccion">
+              <span></span><span></span><span></span><span></span><span class="center"></span><span></span><span></span><span></span><span></span>
+            </div>
+
+            <div class="map-badge" id="mapStatus">Satelite listo</div>
+            <div class="location-readout" id="locationReadout">Sin ubicacion</div>
+          </div>
+        </section>
+
+        <aside class="controls">
+          <section class="control-group primary-actions">
+            <button class="primary" id="startGpsBtn" type="button">▶ Continuar</button>
+            <button id="demoBtn" type="button">Pausar</button>
+            <button id="markABtn" type="button">🔒 Marcar A</button>
+            <button id="markBBtn" type="button">Marcar B</button>
+          </section>
+
+          <section class="control-group secondary-actions">
+            <button id="resetLineBtn" type="button">Borrar linea</button>
+            <button id="saveJobBtn" type="button">■ Finalizar</button>
+            <button id="clearTrackBtn" type="button">Limpiar</button>
+          </section>
+
+          <section class="control-group compact-settings">
+            <label>
+              Potrero
+              <input id="fieldName" type="text" value="Potrero 1" autocomplete="off" />
+            </label>
+            <label>
+              Ancho (m)
+              <input id="implementWidth" type="number" min="1" max="60" step="0.5" value="18" />
+            </label>
+            <label>
+              Vista
+              <select id="viewDistance">
+                <option value="120">Cerca</option>
+                <option value="220" selected>Normal</option>
+                <option value="360">Amplia</option>
+              </select>
+            </label>
+            <label class="toggle-row">
+              <input id="satelliteToggle" type="checkbox" checked />
+              <span>Satelite</span>
+            </label>
+          </section>
+
+          <section class="control-group stats-drawer">
+            <div id="historyList" class="history-list"></div>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <script src="app.js?v=17" defer></script>
+  </body>
+</html>
+
+
